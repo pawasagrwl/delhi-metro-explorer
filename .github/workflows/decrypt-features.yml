@@ -15,5 +15,5 @@ jobs:
 
       - name: Decrypt features.md
         run: |
-          openssl version
+          openssl aes-256-cbc -d -salt -in features.md.enc -out features.md -pbkdf2 -pass pass:$FEATURES_FILE_PASSPHRASE
           cat features.md
