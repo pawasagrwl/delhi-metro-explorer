@@ -53,5 +53,3 @@ Main URL: `https://backend.delhimetrorail.com/api/v2/en/(OPTION)`
 11. **Passenger Parking and Bicycle Facilities**
     - URL: `https://backend.delhimetrorail.com/api/v2/en/passenger/parking-bicycle-facilities/`
 
-
-Note: 
