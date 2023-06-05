@@ -9,11 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - 
-        name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Decrypt features.md
+        env:  # Define the environment variable for this step
+          FEATURES_FILE_PASSPHRASE: ${{ secrets.FEATURES_FILE_PASSPHRASE }}  # Assuming the passphrase is stored as a GitHub secret
         run: |
           openssl aes-256-cbc -d -salt -in features.md.enc -out features.md -pbkdf2 -pass pass:$FEATURES_FILE_PASSPHRASE
           cat features.md
