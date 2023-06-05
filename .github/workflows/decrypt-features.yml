@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+            node: '16'
 
       - name: Decrypt features.md
         run: |
