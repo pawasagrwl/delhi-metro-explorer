@@ -7,14 +7,29 @@
 // 5. station_route/origin/destination/minimum-interchange/date-time
 // 7. station_by_line/LN[number]
 // 8. station/[code]
+// 9. passenger/facilities
+// 10. passenger/facilities-for-women-passengers
+// 11. passenger/facilities-for-differently-abled-passengers/
+// 12. passenger/parking-bicycle-facilities/
+
 
 // let url = 'https://backend.delhimetrorail.com/api/v2/en/line_list';
 
 let url = 'https://backend.delhimetrorail.com/api/v2/en/station_route/UDB/NFGH/least-distance/2023-06-04T12:14:46.695'
 
-
+let url1 = 'https://backend.delhimetrorail.com/api/v2/en/service_information';
+let url2 = 'https://backend.delhimetrorail.com/api/v2/en/line_list';
+let url3 = 'https://backend.delhimetrorail.com/api/v2/en/station_list';
+let url4 = 'https://backend.delhimetrorail.com/api/v2/en/station_route/origin/destination/least-distance/date-time';
+let url5 = 'https://backend.delhimetrorail.com/api/v2/en/station_route/origin/destination/minimum-interchange/date-time';
+let url6 = 'https://backend.delhimetrorail.com/api/v2/en/station_by_line/LN5';
+let url7 = 'https://backend.delhimetrorail.com/api/v2/en/station/KG';
+let url8 = 'https://backend.delhimetrorail.com/api/v2/en/passenger/facilities';
+let url9 = 'https://backend.delhimetrorail.com/api/v2/en/passenger/facilities-for-women-passengers';
+let url10 = 'https://backend.delhimetrorail.com/api/v2/en/passenger/facilities-for-differently-abled-passengers/';
+let url11 = 'https://backend.delhimetrorail.com/api/v2/en/passenger/parking-bicycle-facilities/';
 // Use Fetch API to get data
-fetch(url, {
+fetch(url11, {
     method: 'GET',
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0',
@@ -42,7 +57,6 @@ fetch(url, {
 .then(data => {
     // Get the div where we will output data
     let outputDiv = document.getElementById('output');
-    console.log((data[0]['station_facility']));
     // Convert data to a string and output it
     // Here we simply convert the whole data object to a string for simplicity
     // In a real scenario, you would likely want to access specific properties of the data object
