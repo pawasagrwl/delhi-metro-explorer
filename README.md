@@ -41,11 +41,13 @@ Main URL: `https://backend.delhimetrorail.com/api/v2/en/(OPTION)`
    - URL: `https://backend.delhimetrorail.com/api/v2/en/station_by_line/LN[number]`
    - Usage: Replace `[number]` with the desired line number (0-9). Example: LN1, LN2, ...
    - Description: This API endpoint provides a list of stations for the specified metro line.
+   - Example: [`https://backend.delhimetrorail.com/api/v2/en/station_by_line/LN1`](https://backend.delhimetrorail.com/api/v2/en/station_by_line/LN1)
 
 7. **Station Details**
    - URL: `https://backend.delhimetrorail.com/api/v2/en/station/[code]`
    - Usage: Replace `[code]` with the desired station code.
    - Description: This API endpoint provides details for the specified station.
+   - Example: [`https://backend.delhimetrorail.com/api/v2/en/station/KG`](https://backend.delhimetrorail.com/api/v2/en/station/KG)
 
 8. **Passenger Facilities**
    - URL: [`https://backend.delhimetrorail.com/api/v2/en/passenger/facilities`](https://backend.delhimetrorail.com/api/v2/en/passenger/facilities)
