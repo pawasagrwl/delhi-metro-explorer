@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Delhi Metro Website</title>
-</head>
+<html>
 <body>
-    <div id="output"></div>
-    <script src="index.js"></script>
+
+<div id="output"></div>
+
+<script>
+// Your original API endpoint
+let apiEndpoint =
+  "https://backend.delhimetrorail.com/api/v2/en/station_route/UDB/NFGH/least-distance/2023-06-04T12:14:46.695";
+
+// The Heroku proxy URL
+let proxyUrl = "https://bypass-sop.herokuapp.com/";
+
+// Combine them
+let finalUrl = proxyUrl + apiEndpoint;
+
+fetch(finalUrl, {
+  headers: {
+    Referer: "https://www.delhimetrorail.com/",
+    Origin: "https://www.delhimetrorail.com",
+  },
+})
+  .then(response => response.json())
+  .then(data => {
+    // Output the data to the 'output' div
+    document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+  })
+  .catch(error => console.error('Error:', error));
+</script>
+
 </body>
 </html>
