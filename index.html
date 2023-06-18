@@ -5,17 +5,36 @@
 
     <script>
       let finalUrl = "https://sop-test-55cc3c7a5cf5.herokuapp.com/";
+
       fetch(finalUrl)
         .then((response) => response.text())
         .then((data) => {
-          const jsonData = JSON.parse(data); // parse the text data back into a JavaScript object
-          document.getElementById("output").textContent = JSON.stringify(
-            jsonData,
-            null,
-            2
-          ); // stringify it with indentation
+          const jsonData = JSON.parse(data);
+          const output = document.getElementById("output");
+          displayData(jsonData, output);
         })
         .catch((error) => console.error("Error:", error));
+
+      function displayData(data, parent) {
+        const pre = document.createElement("pre");
+
+        if (typeof data === "object") {
+          for (let key in data) {
+            const pre = document.createElement("pre");
+            if (typeof data[key] === "object") {
+              pre.textContent = `${key}: `;
+              parent.appendChild(pre);
+              displayData(data[key], parent);
+            } else {
+              pre.textContent = `${key}: ${data[key]}`;
+              parent.appendChild(pre);
+            }
+          }
+        } else {
+          pre.textContent = `${data}`;
+          parent.appendChild(pre);
+        }
+      }
     </script>
   </body>
 </html>
