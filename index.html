@@ -4,17 +4,15 @@
     <div id="output"></div>
 
     <script>
-      let finalUrl = "https://sop-test-55cc3c7a5cf5.herokuapp.com/";
-
       fetch(finalUrl)
-        .then((response) => response.json())
+        .then((response) => response.text())
         .then((data) => {
-          // Output the data to the 'output' div
+          const jsonData = JSON.parse(data); // parse the text data back into a JavaScript object
           document.getElementById("output").textContent = JSON.stringify(
-            data,
+            jsonData,
             null,
             2
-          );
+          ); // stringify it with indentation
         })
         .catch((error) => console.error("Error:", error));
     </script>
