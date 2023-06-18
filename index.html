@@ -5,22 +5,10 @@
 <div id="output"></div>
 
 <script>
-// Your original API endpoint
-let apiEndpoint =
-  "https://backend.delhimetrorail.com/api/v2/en/station_route/UDB/NFGH/least-distance/2023-06-04T12:14:46.695";
 
-// The Heroku proxy URL
-let proxyUrl = "https://bypass-sop.herokuapp.com/";
+let finalUrl = "https://sop-test-55cc3c7a5cf5.herokuapp.com/";
 
-// Combine them
-let finalUrl = proxyUrl + apiEndpoint;
-
-fetch(finalUrl, {
-  headers: {
-    Referer: "https://www.delhimetrorail.com/",
-    Origin: "https://www.delhimetrorail.com",
-  },
-})
+fetch(finalUrl)
   .then(response => response.text())
   .then(data => {
     // Output the data to the 'output' div
