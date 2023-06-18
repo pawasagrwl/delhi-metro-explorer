@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <body>
+<body>
     <div id="output"></div>
 
     <script>
-      // Your original API endpoint
-      let apiEndpoint =
-        "https://backend.delhimetrorail.com/api/v2/en/station_route/KE/NFGH/least-distance/2023-06-04T12:14:46.695";
+      let finalUrl = "https://sop-test-55cc3c7a5cf5.herokuapp.com/";
 
-      // The Heroku proxy URL
-      let proxyUrl = "https://bypass-sop.herokuapp.com/";
-
-      // Combine them
-      let finalUrl = proxyUrl + apiEndpoint;
-
-      fetch(finalUrl, {
-        headers: {
-          Referer: "https://www.delhimetrorail.com/",
-          Origin: "https://www.delhimetrorail.com",
-        },
-      })
+      fetch(finalUrl)
         .then((response) => response.text())
         .then((data) => {
-          // Output the data to the 'output' div
-          document.getElementById("output").textContent = data;
+          const jsonData = JSON.parse(data);
+          const output = document.getElementById("output");
+          const ul = document.createElement('ul');
+          displayData(jsonData, ul, '');
+          output.appendChild(ul);
         })
         .catch((error) => console.error("Error:", error));
+
+      function displayData(data, parent, prefix) {
+        let count = 0;
+        for (let key in data) {
+          count++;
+          const li = document.createElement("li");
+          const p1 = document.createElement("p");
+          const p2 = document.createElement("p");
+          const newPrefix = prefix + count + '.';
+          p1.textContent = newPrefix + ' ' + key;
+          li.appendChild(p1);
+          if (typeof data[key] === 'object') {
+            const subUl = document.createElement('ul');
+            li.appendChild(subUl);
+            displayData(data[key], subUl, newPrefix);
+          } else {
+            p2.textContent = data[key];
+            li.appendChild(p2);
+          }
+          parent.appendChild(li);
+        }
+      }
     </script>
   </body>
 </html>
