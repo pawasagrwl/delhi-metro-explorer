@@ -21,10 +21,10 @@ fetch(finalUrl, {
     Origin: "https://www.delhimetrorail.com",
   },
 })
-  .then(response => response.json())
+  .then(response => response.text())
   .then(data => {
     // Output the data to the 'output' div
-    document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    document.getElementById('output').textContent = data;
   })
   .catch(error => console.error('Error:', error));
 </script>
