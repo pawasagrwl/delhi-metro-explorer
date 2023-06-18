@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <body>
+<body>
     <div id="output"></div>
 
     <script>
@@ -11,28 +11,31 @@
         .then((data) => {
           const jsonData = JSON.parse(data);
           const output = document.getElementById("output");
-          displayData(jsonData, output);
+          const ul = document.createElement('ul');
+          displayData(jsonData, ul, '');
+          output.appendChild(ul);
         })
         .catch((error) => console.error("Error:", error));
 
-      function displayData(data, parent) {
-        const pre = document.createElement("pre");
-
-        if (typeof data === "object") {
-          for (let key in data) {
-            const pre = document.createElement("pre");
-            if (typeof data[key] === "object") {
-              pre.textContent = `${key}: `;
-              parent.appendChild(pre);
-              displayData(data[key], parent);
-            } else {
-              pre.textContent = `${key}: ${data[key]}`;
-              parent.appendChild(pre);
-            }
+      function displayData(data, parent, prefix) {
+        let count = 0;
+        for (let key in data) {
+          count++;
+          const li = document.createElement("li");
+          const p1 = document.createElement("p");
+          const p2 = document.createElement("p");
+          const newPrefix = prefix + count + '.';
+          p1.textContent = newPrefix + ' ' + key;
+          li.appendChild(p1);
+          if (typeof data[key] === 'object') {
+            const subUl = document.createElement('ul');
+            li.appendChild(subUl);
+            displayData(data[key], subUl, newPrefix);
+          } else {
+            p2.textContent = data[key];
+            li.appendChild(p2);
           }
-        } else {
-          pre.textContent = `${data}`;
-          parent.appendChild(pre);
+          parent.appendChild(li);
         }
       }
     </script>
