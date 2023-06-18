@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <div id="output"></div>
 
-<div id="output"></div>
+    <script>
+      let finalUrl = "https://sop-test-55cc3c7a5cf5.herokuapp.com/";
 
-<script>
-
-let finalUrl = "https://sop-test-55cc3c7a5cf5.herokuapp.com/";
-
-fetch(finalUrl)
-  .then(response => response.text())
-  .then(data => {
-    // Output the data to the 'output' div
-    document.getElementById('output').textContent = data;
-  })
-  .catch(error => console.error('Error:', error));
-</script>
-
-</body>
+      fetch(finalUrl);
+      then((response) => response.json())
+        .then((data) => {
+          // Output the data to the 'output' div
+          document.getElementById("output").textContent = JSON.stringify(
+            data,
+            null,
+            2
+          );
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
+  </body>
 </html>
